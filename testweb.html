@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesan Makanan & Minuman</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="title">🍴 Pesan Makanan & Minuman</h1>
+
+  <div class="container">
+    <!-- Makan -->
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?burger,cheese" alt="Burger">
+      <div class="item-name">Burger + Keju</div>
+      <div class="item-price">Rp30.000</div>
+      <button onclick="beli('makanan', 'Burger + Keju', 30000)">Beli Makanan</button>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?pizza,pineapple" alt="Pizza">
+      <div class="item-name">Pizza + Pineapple</div>
+      <div class="item-price">Rp35.000</div>
+      <button onclick="beli('makanan', 'Pizza + Pineapple', 35000)">Beli Makanan</button>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?hotdog,sausage" alt="Hotdog">
+      <div class="item-name">Hotdog + Double Sausage</div>
+      <div class="item-price">Rp28.000</div>
+      <button onclick="beli('makanan', 'Hotdog + Double Sausage', 28000)">Beli Makanan</button>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?croffle,chocolate" alt="Croffle">
+      <div class="item-name">Croffle + Coklat</div>
+      <div class="item-price">Rp22.000</div>
+      <button onclick="beli('makanan', 'Croffle + Coklat', 22000)">Beli Makanan</button>
+    </div>
+
+    <!-- Minum -->
+    <div class="card">
+      <img src="https://images.tokopedia.net/img/JFrBQq/2022/9/14/326ee2c2-78e8-4086-9b00-49636a9e0af7.jpg" alt="Es Teh">
+      <div class="item-name">Es Teh</div>
+      <div class="item-price">Rp5.000</div>
+      <button onclick="beli('minuman', 'Es Teh', 5000)">Beli Minuman</button>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?orange-juice" alt="Es Jeruk">
+      <div class="item-name">Es Jeruk</div>
+      <div class="item-price">Rp6.000</div>
+      <button onclick="beli('minuman', 'Es Jeruk', 6000)">Beli Minuman</button>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?milo" alt="Milo">
+      <div class="item-name">Milo</div>
+      <div class="item-price">Rp8.000</div>
+      <button onclick="beli('minuman', 'Milo', 8000)">Beli Minuman</button>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?latte" alt="Latte">
+      <div class="item-name">Latte</div>
+      <div class="item-price">Rp12.000</div>
+      <button onclick="beli('minuman', 'Latte', 12000)">Beli Minuman</button>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h2>Ringkasan Pesanan</h2>
+    <div id="list"></div>
+    <div id="subtotal"></div>
+    <div id="pajak"></div>
+    <div id="total"></div>
+  </div>
+
+  <script>
+    let pesanan = [];
+
+    function beli(jenis, nama, harga) {
+      pesanan.push({ jenis, nama, harga });
+      renderPesanan();
+    }
+
+    function renderPesanan() {
+      const listDiv = document.getElementById("list");
+      listDiv.innerHTML = "";
+
+      let subtotal = 0;
+
+      pesanan.forEach(item => {
+        const row = document.createElement("div");
+        row.textContent = `${item.jenis.toUpperCase()} - ${item.nama} : Rp${item.harga.toLocaleString()}`;
+        listDiv.appendChild(row);
+        subtotal += item.harga;
+      });
+
+      const pajak = Math.round(subtotal * 0.1);
+      const total = subtotal + pajak;
+
+      document.getElementById("subtotal").textContent = `Subtotal: Rp${subtotal.toLocaleString()}`;
+      document.getElementById("pajak").textContent = `Pajak (10%): Rp${pajak.toLocaleString()}`;
+      document.getElementById("total").textContent = `Total Bayar: Rp${total.toLocaleString()}`;
+    }
+  </script>
+</body>
+</html>
