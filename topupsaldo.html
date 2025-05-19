@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Isi Saldo</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f2f5;
+      padding: 50px;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e6ffe6;
+      border: 1px solid #b2ffb2;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Isi Saldo</h1>
+    <form id="topupForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required />
+
+      <label for="amount">Nominal Top Up (Rp):</label>
+      <input type="number" id="amount" min="1000" required />
+
+      <button type="submit">Top Up Sekarang</button>
+    </form>
+
+    <div class="result" id="result" style="display: none;"></div>
+  </div>
+
+  <script>
+    document.getElementById("topupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const amount = parseInt(document.getElementById("amount").value);
+      const resultDiv = document.getElementById("result");
+
+      if (!username || isNaN(amount) || amount <= 0) {
+        alert("Mohon isi data dengan benar.");
+        return;
+      }
+
+      // Ambil saldo lama dari localStorage
+      let saldo = parseInt(localStorage.getItem(username)) || 0;
+
+      // Tambah saldo baru
+      saldo += amount;
+
+      // Simpan ke localStorage
+      localStorage.setItem(username, saldo);
+
+      // Tampilkan hasil
+      resultDiv.innerHTML = `
+        <h2>Top Up Berhasil!</h2>
+        <p>Username: <strong>${username}</strong></p>
+        <p>Saldo Saat Ini: <strong>Rp${saldo.toLocaleString()}</strong></p>
+      `;
+      resultDiv.style.display = "block";
+
+      // Reset form
+      document.getElementById("topupForm").reset();
+    });
+  </script>
+</body>
+</html>
