@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesan Makanan & Minuman</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>
+
+    <h1 class="title">CLUCKIN BELL</h1>
+
+  </div>
+
+  <div class="containermenu">
+    <!-- Makan -->
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ15_xbDhOQd6Ygh3KYIzFqN9IIS9nMk7FKnw&s" alt="Burger">
+      <div class="item-name">Burger + Keju</div>
+      <div class="item-price">Rp30.000</div>
+      <button onclick="beli('makanan', 'Burger + Keju', 30000)">Masukan keranjang</button>
+    </div>
+
+    <div class="card">
+      <img src="https://sallysbakingaddiction.com/wp-content/uploads/2014/08/It-doesnt-get-much-better-than-Homemade-Hawaiian-Pizza.-Tropical-paradise-for-dinner-2.jpg" alt="Pizza">
+      <div class="item-name">Pizza + Pineapple</div>
+      <div class="item-price">Rp35.000</div>
+      <button onclick="beli('makanan', 'Pizza + Pineapple', 35000)">Masukan keranjang</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.themodernproper.com/production/posts/2023/HowToMakeAHotDog_4.jpg?w=1200&q=82&auto=format&fit=crop&dm=1685065757&s=d893dc79d991a7104223ef4581fbe5e0" alt="Hotdog">
+      <div class="item-name">Hotdog + Double Sausage</div>
+      <div class="item-price">Rp28.000</div>
+      <button onclick="beli('makanan', 'Hotdog + Double Sausage', 28000)">Masukan keranjang</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.tokopedia.net/img/cache/700/VqbcmM/2021/7/24/4e19d56d-bfa6-4ea5-838b-f9f51148741c.jpg" alt="Croffle">
+      <div class="item-name">Croffle + Coklat</div>
+      <div class="item-price">Rp22.000</div>
+      <button onclick="beli('makanan', 'Croffle + Coklat', 22000)">Masukan keranjang</button>
+    </div>
+
+    <!-- Minum -->
+    <div class="card">
+      <img src="https://images.tokopedia.net/img/JFrBQq/2022/9/14/326ee2c2-78e8-4086-9b00-49636a9e0af7.jpg" alt="Es Teh">
+      <div class="item-name">Es Teh</div>
+      <div class="item-price">Rp5.000</div>
+      <button onclick="beli('minuman', 'Es Teh', 5000)">Masukan keranjang</button>
+    </div>
+
+    <div class="card">
+      <img src="https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/03/09062214/X-Manfaat-Es-Jeruk-dan-Resep-untuk-Membuatnya.jpg" alt="Es Jeruk">
+      <div class="item-name">Es Jeruk</div>
+      <div class="item-price">Rp6.000</div>
+      <button onclick="beli('minuman', 'Es Jeruk', 6000)">Masukan keranjang</button>
+    </div>
+
+    <div class="card">
+      <img src="https://mcgrocer.com/cdn/shop/files/milo-malted-milk-drink-400g-41790017634542.jpg?v=1743786136" alt="Milo">
+      <div class="item-name">Milo</div>
+      <div class="item-price">Rp8.000</div>
+      <button onclick="beli('minuman', 'Milo', 8000)">Masukan keranjang</button>
+    </div>
+
+    <div class="card">
+      <img src="https://asset.kompas.com/crops/-wzpL9lZzsRaToSX39tteUcAvTk=/0x1:1000x668/1200x800/data/photo/2023/09/29/6516698cde5db.jpg" alt="Latte">
+      <div class="item-name">Latte</div>
+      <div class="item-price">Rp12.000</div>
+      <button onclick="beli('minuman', 'Latte', 12000)">Masukan keranjang</button>
+    </div>
+  </div>
+
+  <div class="containertopup">
+    <h1>Isi Saldo</h1>
+    <form id="topupForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required />
+
+      <label for="amount">Nominal Top Up (Rp):</label>
+      <input type="number" id="amount" min="1000" required />
+
+      <button type="submit">Top Up Sekarang</button>
+    </form>
+
+    <div class="result" id="result" style="display: none;"></div>
+  </div>
+
+  <div class="summary">
+    <h2>CART</h2>
+    <div id="list"></div>
+    <div id="subtotal"></div>
+    <div id="pajak"></div>
+    <div id="total"></div>
+  </div>
+
+  
+
+  <script src="js/menudanpajak.js">
+  </script>
+</body>
+</html>
