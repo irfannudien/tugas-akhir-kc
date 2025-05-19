@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2d89ef;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1b66c9;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="Email" required />
+      <div id="emailError" class="error"></div>
+      <input type="password" id="password" placeholder="Password" required />
+      <div id="errorMsg" class="error"></div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    // Simulasi daftar user
+    const users = [
+      { email: "gemilang@gmail.com", password: "123456" },
+      { email: "ridho@gmail.com", password: "123456" }
+    ];
+
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const emailError = document.getElementById("emailError");
+      const errorMsg = document.getElementById("errorMsg");
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validasi email
+      if (!emailRegex.test(email)) {
+        emailError.textContent = "Format email tidak valid.";
+        errorMsg.textContent = "";
+        return;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Cek apakah email dan password cocok
+      const userFound = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (!userFound) {
+        errorMsg.textContent = "Email atau password salah.";
+        return;
+      }
+
+      // Simpan status login
+      localStorage.setItem("isLoggedIn", "true");
+
+      // Redirect ke index.html setelah sedikit delay
+      setTimeout(() => {
+        window.location.href = "testweb.html";
+      }, 100);
+    }
+
+    // Pasang event listener
+    const loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+      loginForm.addEventListener("submit", handleLogin);
+    }
+  </script>
+</body>
+</html>
