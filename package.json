@@ -1,0 +1,15 @@
+{
+  "name": "tugas-akhir-kc",
+  "version": "1.0.0",
+  "description": "Read Me",
+  "main": "topupsaldo.js",
+  "scripts": {
+    "server": "json-server --watch db.json --port 8000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
