@@ -1,12 +1,6 @@
 {
   "users": [
-    {
-      "id": "b438",
-      "nama": "admin",
-      "email": "admin@gmail.com",
-      "password": "123456",
-      "saldo": 0
-    }
+    
   ],
   "menu": [
     {
