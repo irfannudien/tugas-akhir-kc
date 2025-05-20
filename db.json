@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": "b438",
+      "nama": "admin",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "saldo": 0
+    }
+  ],
+  "menu": [
+    {
+      "id": "1",
+      "kategori": "makanan",
+      "nama": "Burger + Keju",
+      "harga": 15000,
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ15_xbDhOQd6Ygh3KYIzFqN9IIS9nMk7FKnw&s"
+    },
+    {
+      "id": "2",
+      "kategori": "makanan",
+      "nama": "Pizza + Pineapple",
+      "harga": 15000,
+      "gambar": "https://sallysbakingaddiction.com/wp-content/uploads/2014/08/It-doesnt-get-much-better-than-Homemade-Hawaiian-Pizza.-Tropical-paradise-for-dinner-2.jpg"
+    },
+    {
+      "id": "3",
+      "kategori": "makanan",
+      "nama": "Hotdog + Double Sausage",
+      "harga": 15000,
+      "gambar": "https://images.themodernproper.com/production/posts/2023/HowToMakeAHotDog_4.jpg?w=1200&q=82&auto=format&fit=crop&dm=1685065757&s=d893dc79d991a7104223ef4581fbe5e0"
+    },
+    {
+      "id": "4",
+      "kategori": "makanan",
+      "nama": "Croffle + Coklat",
+      "harga": 15000,
+      "gambar": "https://images.tokopedia.net/img/cache/700/VqbcmM/2021/7/24/4e19d56d-bfa6-4ea5-838b-f9f51148741c.jpg"
+    },
+    {
+      "id": "5",
+      "kategori": "minuman",
+      "nama": "Es Teh",
+      "harga": 5000,
+      "gambar": "https://images.tokopedia.net/img/JFrBQq/2022/9/14/326ee2c2-78e8-4086-9b00-49636a9e0af7.jpg"
+    },
+    {
+      "id": "6",
+      "kategori": "minuman",
+      "nama": "Es Jeruk",
+      "harga": 5000,
+      "gambar": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/03/09062214/X-Manfaat-Es-Jeruk-dan-Resep-untuk-Membuatnya.jpg"
+    },
+    {
+      "id": "7",
+      "kategori": "minuman",
+      "nama": "Milo",
+      "harga": 5000,
+      "gambar": "https://mcgrocer.com/cdn/shop/files/milo-malted-milk-drink-400g-41790017634542.jpg?v=1743786136"
+    },
+    {
+      "id": "8",
+      "kategori": "minuman",
+      "nama": "Latte",
+      "harga": 5000,
+      "gambar": "https://asset.kompas.com/crops/-wzpL9lZzsRaToSX39tteUcAvTk=/0x1:1000x668/1200x800/data/photo/2023/09/29/6516698cde5db.jpg"
+    }
+  ]
+}
