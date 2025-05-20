@@ -1,123 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-    }
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    .login-container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 300px;
-    }
+    <title>Pesan Makanan & Minuman</title>
+    <link rel="stylesheet" href="style.css" />
 
-    h2 {
-      text-align: center;
-    }
+    <style>
+      body {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid p-3">
+      <div class="row align-items-center justify-content-between mb-3">
+        <div id="welcomeMsg" class="fs-5 text-secondary col-auto"></div>
+        <div class="col-auto">
+          <button id="logoutBtn" class="btn btn-danger btn-sm">Logout</button>
+        </div>
+      </div>
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+      <h1 class="text-center mb-4">CLUCKIN BELL</h1>
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #2d89ef;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+      <div class="row">
+        <div class="col-md-4">
+          <div class="sticky-top" style="top: 20px">
+            <div class="card mb-4 p-3 shadow-sm">
+              <h4>Isi Saldo</h4>
+              <div class="saldo-wrapper mb-3">
+                <h5>Saldo Anda: <span id="saldoSekarang">Rp0</span></h5>
+              </div>
+              <form id="topupForm" class="mb-3">
+                <label for="amount" class="form-label"
+                  >Nominal Top Up (Rp):</label
+                >
+                <input
+                  type="number"
+                  id="amount"
+                  min="1000"
+                  class="form-control"
+                  required
+                />
+                <button type="submit" class="btn btn-primary mt-3 w-100">
+                  Top Up Sekarang
+                </button>
+              </form>
+              <div class="result" id="result" style="display: none"></div>
+            </div>
 
-    button:hover {
-      background-color: #1b66c9;
-    }
+            <div class="card p-3 shadow-sm">
+              <h4>Keranjang Belanja</h4>
+              <div
+                id="list"
+                class="mb-3"
+                style="max-height: 200px; overflow-y: auto"
+              ></div>
+              <div id="subtotal" class="fw-semibold"></div>
+              <div id="pajak" class="fw-semibold"></div>
+              <div id="total" class="fw-bold fs-5 mb-3"></div>
+              <button id="checkoutBtn" class="btn btn-success w-100">
+                Checkout Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
 
-    .error {
-      color: red;
-      font-size: 0.9em;
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <input type="text" id="email" placeholder="Email" required />
-      <div id="emailError" class="error"></div>
-      <input type="password" id="password" placeholder="Password" required />
-      <div id="errorMsg" class="error"></div>
-      <button type="submit">Login</button>
-    </form>
-  </div>
+        <div class="col-md-8">
+          <div class="filter-container mb-3 d-flex gap-2">
+            <select id="filterCategory" class="form-select w-auto">
+              <option value="">Semua Kategori</option>
+            </select>
 
-  <script>
-    // Simulasi daftar user
-    const users = [
-      { email: "gemilang@gmail.com", password: "123456" },
-      { email: "ridho@gmail.com", password: "123456" }
-    ];
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Cari nama menu..."
+              class="form-control"
+            />
+          </div>
 
-    function handleLogin(event) {
-      event.preventDefault();
+          <div class="containermenu row" id="menuContainer"></div>
+        </div>
+      </div>
+    </div>
 
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-      const emailError = document.getElementById("emailError");
-      const errorMsg = document.getElementById("errorMsg");
+    <script>
+      const user = localStorage.getItem("user");
+      if (!user) {
+        Swal.fire({
+          icon: "warning",
+          title: "Akses Ditolak",
+          text: "Kamu harus login dulu!",
+        });
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Validasi email
-      if (!emailRegex.test(email)) {
-        emailError.textContent = "Format email tidak valid.";
-        errorMsg.textContent = "";
-        return;
+        window.location.href = "login.html";
       } else {
-        emailError.textContent = "";
+        document.body.style.display = "block";
+
+        const username = JSON.parse(user);
+        if (username && username.nama) {
+          document.getElementById(
+            "welcomeMsg"
+          ).textContent = `Selamat datang, ${username.nama}!`;
+        }
       }
+    </script>
 
-      // Cek apakah email dan password cocok
-      const userFound = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (!userFound) {
-        errorMsg.textContent = "Email atau password salah.";
-        return;
-      }
-
-      // Simpan status login
-      localStorage.setItem("isLoggedIn", "true");
-
-      // Redirect ke index.html setelah sedikit delay
-      setTimeout(() => {
-        window.location.href = "testweb.html";
-      }, 100);
-    }
-
-    // Pasang event listener
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-      loginForm.addEventListener("submit", handleLogin);
-    }
-  </script>
-</body>
+    <script src="js/logout.js"></script>
+    <script src="js/topUpSaldo.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+  </body>
 </html>
